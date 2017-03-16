@@ -90,6 +90,7 @@ router.post('/comment', (req, res) => {
     quiz_id: 1
   }).then(function(dbPost){
     console.log(dbPost);
+    res.redirect('results');
   });
 });
 
