@@ -1,11 +1,15 @@
 <!--quiz results go here-->
 
-<h3>Comments</h3>
-<ul>
+
+  <h3>Comments</h3>
+
   {{#each posts}}
-  <li>{{comment}}</li>
+  <div class="comment-div">
+    <p>{{comment}}</p>
+  </div>
   {{/each}}
-</ul>
+
+
 
 <!-----------------New comment form------------------------>
 <h3> Add a New Comment </h3>
