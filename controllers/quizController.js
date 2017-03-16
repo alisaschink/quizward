@@ -21,6 +21,16 @@ router.get('/new', function(req, res) {
   res.render('quizzes/new');
 });
 
+// needs to be adjusted to associate with each individual quiz
+router.get('/results', function(req, res) {
+  Models.Post.findAll({}).then((results) => {
+    var posts = {
+      posts: results
+    };
+    res.render('quizzes/results', posts);
+  });
+});
+
 router.get('/api/new', function(req, res) {
   Models.Category.findAll({}).then((results) => {
     res.json(results);
@@ -68,6 +78,18 @@ router.post('/create', jsonParse, (req, res) => {
     category_id: req.body.category,
   }).then(function(q) {
     res.json(q);
+  });
+});
+
+// create new comment
+router.post('/comment', (req, res) => {
+  Models.Post.create({
+    comment: req.body.comment,
+    // dummy numbers until can be tested with auth
+    user_id: 1,
+    quiz_id: 1
+  }).then(function(dbPost){
+    console.log(dbPost);
   });
 });
 
