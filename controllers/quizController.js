@@ -86,6 +86,7 @@ router.post('/comment', (req, res) => {
   Models.Post.create({
     comment: req.body.comment,
     // dummy numbers until can be tested with auth
+    // requires there to be at least one entry in the user and quiz tables
     user_id: 1,
     quiz_id: 1
   }).then(function(dbPost){
