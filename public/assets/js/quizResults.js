@@ -23,8 +23,10 @@ $(document).ready(function() {
 
   function printResults(r) {
     var resultsContainer = $('.panel-group');
+    resultsContainer.empty();
     $('.quiz-title').html(r.a.name);
     $('.quiz-description').html(r.a.description);
+    $('.categories').empty();
     for (var i = 0; i < r.a.Categories.length; i++) {
       var category = $('<a>').addClass('category-links').attr("href", "/categories/" + r.a.Categories[i].id).html(r.a.Categories[i].name);
       $('.categories').append(category);
@@ -51,7 +53,7 @@ $(document).ready(function() {
       var totalQuestions = 0;
       r.a.Questions.forEach(function(item, index) {
         totalQuestions++;
-        console.log(item);
+        // console.log(item);
         var newQuestion = $('<div>').addClass('well well-lg');
         var questionInfo = $('<h5>').html(item.question);
         var questionAnswer = $('<p>').html('Answer: ' + JSON.parse(item.correct_answer));
@@ -96,14 +98,15 @@ $(".comment-submit").on('click', function(e){
 })
 
   function printComments(r){
+    $('.posts-container').empty();
      for (var i = 0; i < r.b.length; i++) {
       var username = r.b[i].User.username;
       var comments = r.b[i].comment;
       var usernameDiv = $('<div>').addClass('username-div').append(username);
       var commentDiv = $('<div>').addClass('comment-div').append(comments);
       commentDiv.prepend(usernameDiv);
-    }
-    $('.posts-container').prepend(commentDiv);
+      $('.posts-container').append(commentDiv);
+    } 
   }
 
 
